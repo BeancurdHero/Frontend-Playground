@@ -20,7 +20,9 @@
         categorySubtitle: null,
         searchInput: null,
         menuToggle: null,
-        sidebar: null
+        sidebar: null,
+        categoryPills: null,
+        sidebarBackdrop: null
     };
 
     // Capitalize first letter
@@ -277,6 +279,8 @@
         elements.searchInput = document.getElementById('searchInput');
         elements.menuToggle = document.getElementById('menuToggle');
         elements.sidebar = document.getElementById('sidebar');
+        elements.categoryPills = document.getElementById('categoryPills');
+        elements.sidebarBackdrop = document.getElementById('sidebarBackdrop');
 
         // Check if categories loaded
         if (typeof CATEGORIES === 'undefined') {
@@ -285,8 +289,9 @@
             return;
         }
 
-        // Render sidebar
+        // Render sidebar and mobile pills
         renderSidebar();
+        renderCategoryPills();
 
         // Setup event listeners
         setupEventListeners();
@@ -325,6 +330,28 @@
         });
     }
 
+    // Render mobile category pills
+    function renderCategoryPills() {
+        if (!elements.categoryPills) return;
+
+        elements.categoryPills.innerHTML = CATEGORIES.map(category => `
+            <button class="category-pill" data-category-id="${category.id}">
+                <span>${category.icon}</span>
+                <span>${category.name}</span>
+            </button>
+        `).join('');
+
+        // Add click handlers
+        elements.categoryPills.querySelectorAll('.category-pill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const categoryId = pill.dataset.categoryId;
+                loadCategory(categoryId);
+                // Scroll selected pill into view
+                pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            });
+        });
+    }
+
     // Load a category
     function loadCategory(categoryId) {
         const category = CATEGORIES.find(c => c.id === categoryId);
@@ -336,6 +363,13 @@
         elements.sidebarList.querySelectorAll('.category-item').forEach(item => {
             item.classList.toggle('active', item.dataset.categoryId === categoryId);
         });
+
+        // Update active state in mobile pills
+        if (elements.categoryPills) {
+            elements.categoryPills.querySelectorAll('.category-pill').forEach(pill => {
+                pill.classList.toggle('active', pill.dataset.categoryId === categoryId);
+            });
+        }
 
         // Update header
         elements.categoryTitle.textContent = category.name;
@@ -520,6 +554,11 @@
         // Mobile menu toggle
         elements.menuToggle.addEventListener('click', toggleSidebar);
 
+        // Backdrop click to close sidebar
+        if (elements.sidebarBackdrop) {
+            elements.sidebarBackdrop.addEventListener('click', closeSidebarOnMobile);
+        }
+
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
@@ -534,6 +573,9 @@
     function toggleSidebar() {
         state.sidebarOpen = !state.sidebarOpen;
         elements.sidebar.classList.toggle('open', state.sidebarOpen);
+        if (elements.sidebarBackdrop) {
+            elements.sidebarBackdrop.classList.toggle('show', state.sidebarOpen);
+        }
     }
 
     // Close sidebar on mobile
@@ -541,6 +583,9 @@
         if (window.innerWidth <= 768) {
             state.sidebarOpen = false;
             elements.sidebar.classList.remove('open');
+            if (elements.sidebarBackdrop) {
+                elements.sidebarBackdrop.classList.remove('show');
+            }
         }
     }
 

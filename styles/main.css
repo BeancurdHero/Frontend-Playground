@@ -542,55 +542,219 @@ body {
         --spacing-xl: 1.5rem;
     }
 
+    /* Compact Header */
     .header-bar {
-        padding: 0 var(--spacing-md);
+        height: 52px;
+        padding: 0 var(--spacing-sm);
+        gap: var(--spacing-sm);
     }
 
-    .brand-text {
-        font-size: 9px;
+    .search-container {
+        flex: 1;
+        max-width: none;
     }
 
-    .brand-subtext {
-        font-size: 8px;
+    .search-box {
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 
+    .search-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .search-input {
+        font-size: 14px;
+    }
+
+    .search-input::placeholder {
+        font-size: 13px;
+    }
+
+    /* Hide brand on mobile to save space */
+    .brand-container {
+        display: none;
+    }
+
+    /* Compact Title Bar */
     .title-bar {
-        height: 60px;
+        height: 52px;
     }
 
     .title-overlay h1 {
-        font-size: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 2px;
     }
 
     .title-overlay p {
-        font-size: 11px;
+        font-size: 10px;
+        font-weight: 500;
     }
 
+    /* Mobile Category Pills - Horizontal Scroll */
+    .category-pills {
+        display: flex !important;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: var(--bg);
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        border-bottom: 1px solid var(--border);
+        scrollbar-width: none;
+    }
+
+    .category-pills::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-pill {
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        padding: var(--spacing-xs) var(--spacing-md);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-full);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-1);
+        white-space: nowrap;
+        transition: all var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .category-pill:active {
+        transform: scale(0.95);
+    }
+
+    .category-pill.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+
+    /* Sidebar Overlay */
     .sidebar {
         position: fixed;
-        left: -280px;
-        top: 140px;
+        left: -100%;
+        top: 0;
         bottom: 0;
-        z-index: 200;
+        width: 85%;
+        max-width: 320px;
+        z-index: 300;
         transition: left var(--transition-normal);
+        box-shadow: 2px 0 16px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar.open {
         left: 0;
     }
 
-    .content-area {
-        padding: var(--spacing-md);
+    /* Sidebar Backdrop */
+    .sidebar-backdrop {
+        display: block !important;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 250;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--transition-normal);
     }
 
+    .sidebar-backdrop.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Content Area */
+    .content-area {
+        padding: var(--spacing-sm);
+        padding-top: 0;
+    }
+
+    .content-header {
+        margin-bottom: var(--spacing-md);
+        padding: var(--spacing-sm) 0;
+    }
+
+    .content-header h2 {
+        font-size: 18px;
+    }
+
+    .content-header p {
+        font-size: 12px;
+    }
+
+    /* Single Column Grid */
     .effects-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
 
-    .menu-toggle {
-        display: block !important;
+    /* Mobile Card Styles */
+    .effect-card {
+        border-radius: var(--radius-lg);
     }
+
+    .effect-preview {
+        height: 140px;
+    }
+
+    .effect-content {
+        padding: var(--spacing-sm);
+    }
+
+    .effect-name {
+        font-size: 13px;
+    }
+
+    .effect-name-zh {
+        font-size: 11px;
+    }
+
+    .effect-actions {
+        gap: var(--spacing-xs);
+    }
+
+    .action-btn {
+        font-size: 11px;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Menu Toggle */
+    .menu-toggle {
+        display: flex !important;
+        width: 36px;
+        height: 36px;
+        margin-right: var(--spacing-xs);
+    }
+
+    .menu-toggle span {
+        width: 18px;
+        height: 2px;
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+        width: 18px;
+        height: 2px;
+    }
+
+    .menu-toggle span::before { top: -5px; }
+    .menu-toggle span::after { top: 5px; }
+}
+
+/* Category Pills (Desktop Hidden) */
+.category-pills {
+    display: none;
 }
 
 /* Menu Toggle Button (Mobile) */
