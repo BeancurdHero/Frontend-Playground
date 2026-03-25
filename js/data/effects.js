@@ -5616,28 +5616,54 @@
 
         // 4. Tilt Parallax
         'tilt-parallax': function(container) {
-            container.style.cssText = 'display:flex;align-items:center;justify-content:center;background:#1a1a2e;overflow:hidden;perspective:800px;';
+            container.style.cssText = 'display:flex;align-items:center;justify-content:center;background:#0f0f23;overflow:hidden;position:relative;';
 
-            const card = document.createElement('div');
-            card.style.cssText = 'width:100px;height:70px;background:linear-gradient(135deg,#6750A4,#9381FF);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;transform-style:preserve-3d;transition:transform 0.1s ease;';
-            card.textContent = 'TILT';
-            container.appendChild(card);
+            // Create layered depth parallax effect
+            const layers = [
+                { emoji: '🌙', size: 24, depth: 30, x: 20, y: 15 },
+                { emoji: '⭐', size: 10, depth: 20, x: 70, y: 25 },
+                { emoji: '⭐', size: 8, depth: 25, x: 35, y: 45 },
+                { emoji: '🌟', size: 14, depth: 15, x: 80, y: 55 },
+                { emoji: '✨', size: 12, depth: 10, x: 50, y: 35 }
+            ];
 
-            const dots = [];
-            for (let i = 0; i < 5; i++) {
-                const dot = document.createElement('div');
-                dot.style.cssText = `position:absolute;width:8px;height:8px;background:#9381FF;border-radius:50%;transform:translateZ(${20 + i * 15}px);`;
-                dot.style.left = (15 + i * 18) + 'px';
-                dot.style.top = '15px';
-                card.appendChild(dot);
-                dots.push(dot);
-            }
+            const elements = [];
+            layers.forEach((layer, i) => {
+                const el = document.createElement('div');
+                el.style.cssText = `position:absolute;font-size:${layer.size}px;left:${layer.x}px;top:${layer.y}px;transition:transform 0.15s ease-out;will-change:transform;`;
+                el.textContent = layer.emoji;
+                container.appendChild(el);
+                elements.push({ el, depth: layer.depth });
+            });
+
+            // Center text
+            const text = document.createElement('div');
+            text.style.cssText = 'position:absolute;font-size:11px;font-weight:700;color:#9381FF;letter-spacing:1px;text-transform:center;';
+            text.textContent = 'DEPTH';
+            text.style.left = '50%';
+            text.style.top = '50%';
+            text.style.transform = 'translate(-50%, -50%)';
+            container.appendChild(text);
+            elements.push({ el: text, depth: 5 });
 
             container.addEventListener('mousemove', (e) => {
                 const rect = container.getBoundingClientRect();
-                const x = (e.clientX - rect.left - rect.width / 2) / 8;
-                const y = (e.clientY - rect.top - rect.height / 2) / 8;
-                card.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                elements.forEach(item => {
+                    const moveX = (mouseX - centerX) * (item.depth / 100);
+                    const moveY = (mouseY - centerY) * (item.depth / 100);
+                    item.el.style.transform = `translate(${moveX}px, ${moveY}px)${item.el === text ? ' translate(-50%, -50%)' : ''}`;
+                });
+            });
+
+            container.addEventListener('mouseleave', () => {
+                elements.forEach(item => {
+                    item.el.style.transform = item.el === text ? 'translate(-50%, -50%)' : 'translate(0, 0)';
+                });
             });
         },
 
