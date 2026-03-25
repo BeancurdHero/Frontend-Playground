@@ -2,6 +2,8 @@
 
 > Discover 240+ interactive frontend effects with live previews and ready-to-use code
 
+**Live Demo:** [https://beancurdhero.github.io/Frontend-Playground/](https://beancurdhero.github.io/Frontend-Playground/)
+
 **Repository:** [https://github.com/BeancurdHero/Frontend-Playground](https://github.com/BeancurdHero/Frontend-Playground)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -52,34 +54,23 @@ A curated collection of modern frontend effects and interactions organized into 
 
 ## 🚀 Quick Start
 
-### Option 1: Open Directly
+**Visit the live demo:** [https://beancurdhero.github.io/Frontend-Playground/](https://beancurdhero.github.io/Frontend-Playground/)
 
-Simply open `index.html` in your browser - no server required!
+### Run Locally
 
 ```bash
 # Clone the repository
 git clone https://github.com/BeancurdHero/Frontend-Playground.git
 cd Frontend-Playground
+
+# Option 1: Open directly
 open index.html  # macOS
 # or double-click index.html on Windows/Linux
-```
 
-### Option 2: Local Server (Recommended)
-
-For the best experience, use a local web server:
-
-```bash
-# Using Python 3
+# Option 2: Use a local server (recommended)
 python -m http.server 8000
-
-# Using Node.js (npx)
-npx serve
-
-# Using PHP
-php -S localhost:8000
+# Then visit http://localhost:8000
 ```
-
-Then visit `http://localhost:8000` in your browser.
 
 ## 📖 Usage
 
@@ -89,55 +80,10 @@ Then visit `http://localhost:8000` in your browser.
 4. **AI Generate** - Click "▾ Prompt" to get an AI prompt for variations
 5. **Search** - Use the search box to find specific effects
 
-## 🛠️ Customization
-
-### Changing Colors
-
-Edit the CSS variables in `styles/main.css`:
-
-```css
-:root {
-    --primary: #6750A4;      /* Main accent color */
-    --bg: #F0EBF8;            /* Page background */
-    --surface: #FFFFFF;       /* Card background */
-    --sidebar-bg: #EDE7F6;    /* Sidebar background */
-    /* ... more variables ... */
-}
-```
-
-### Adding New Effects
-
-1. Add your effect to `js/data/effects.js`:
-
-```javascript
-const YOUR_CATEGORY = [
-    {
-        id: 'your-effect-id',
-        name: 'Your Effect Name',
-        nameZh: '效果名称',
-        previewId: 'your-effect-id',
-        preview: '<div>Preview HTML</div>',
-        prompt: 'Create a...',
-        code: '// Your code here'
-    }
-];
-```
-
-2. Add the preview initializer:
-
-```javascript
-const PREVIEW_INITERS = {
-    'your-effect-id': function(container) {
-        container.style.cssText = 'display:flex;align-items:center;';
-        // Your preview implementation
-    }
-};
-```
-
 ## 📁 Project Structure
 
 ```
-playground-3/
+Frontend-Playground/
 ├── index.html              # Main HTML structure
 ├── styles/
 │   └── main.css           # All styles and themes
@@ -149,39 +95,6 @@ playground-3/
 │       └── effects.js     # All 240+ effects
 └── README.md              # This file
 ```
-
-## 🎯 Effects Reference
-
-### Popular Effects
-
-#### Card Hover Spotlight
-```javascript
-// Radial gradient that follows mouse cursor
-// Perfect for interactive cards and buttons
-```
-
-#### Tilt Parallax
-```javascript
-// Multi-layer depth effect with mouse tracking
-// Creates 3D illusion on 2D elements
-```
-
-#### Dynamic Layout
-```javascript
-// Auto-cycling bento grid with smooth transitions
-// Great for dashboards and portfolio layouts
-```
-
-### Design Styles Included
-
-- **Aesthetic Minimal** - Clean, photo-style layouts
-- **Cyberpunk** - Neon, futuristic tech aesthetics
-- **Glassmorphism** - Frosted glass blur effects
-- **Neumorphism** - Soft, extruded plastic look
-- **Y2K** - Early 2000s nostalgia
-- **Brutalism** - Raw, bold, unpolished
-- **Bauhaus** - Geometric, functional design
-- And many more...
 
 ## 🌐 Browser Support
 
@@ -200,15 +113,6 @@ Designed by **BeancurdHero**
 
 - GitHub: [BeancurdHero](https://github.com/BeancurdHero)
 - X.com: [@BeancurdHero](https://x.com/BeancurdHero)
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-1. Fork the repository
-2. Create a new branch for your effect
-3. Add your effect to the appropriate category
-4. Submit a pull request
 
 ## 📧 Feedback
 
