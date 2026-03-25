@@ -56,22 +56,6 @@ A curated collection of modern frontend effects and interactions organized into 
 
 **Visit the live demo:** [https://beancurdhero.github.io/Frontend-Playground/](https://beancurdhero.github.io/Frontend-Playground/)
 
-### Run Locally
-
-```bash
-# Clone the repository
-git clone https://github.com/BeancurdHero/Frontend-Playground.git
-cd Frontend-Playground
-
-# Option 1: Open directly
-open index.html  # macOS
-# or double-click index.html on Windows/Linux
-
-# Option 2: Use a local server (recommended)
-python -m http.server 8000
-# Then visit http://localhost:8000
-```
-
 ## 📖 Usage
 
 1. **Browse Categories** - Click on any category in the left sidebar
