@@ -2,6 +2,8 @@
 
 > Discover 240+ interactive frontend effects with live previews and ready-to-use code
 
+**Repository:** [https://github.com/BeancurdHero/Frontend-Playground](https://github.com/BeancurdHero/Frontend-Playground)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Design](https://img.shields.io/badge/Design-Material_You-purple)](https://m3.material.io/)
 
@@ -55,8 +57,9 @@ A curated collection of modern frontend effects and interactions organized into 
 Simply open `index.html` in your browser - no server required!
 
 ```bash
-# Clone or download the repository
-cd playground-3
+# Clone the repository
+git clone https://github.com/BeancurdHero/Frontend-Playground.git
+cd Frontend-Playground
 open index.html  # macOS
 # or double-click index.html on Windows/Linux
 ```
